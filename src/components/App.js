@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Navbar from "./Navigation";
 
+const API_URL = process.env.REACT_APP_API_URL;
 class App extends Component {
   state = {
     user_name: "",
@@ -13,7 +14,7 @@ class App extends Component {
   };
 
   componentDidMount() {
-    fetch("http://localhost:4000/api/random_stock")
+    fetch(`${API_URL}/random_stock`)
       .then(response => response.json())
       .then(stock =>
         this.setState(prevState => ({
