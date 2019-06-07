@@ -1,11 +1,15 @@
 import React, { Component } from "react";
 import Navbar from "./Navigation";
+import Chart from "./Chart";
 
 const API_URL = process.env.REACT_APP_API_URL;
 class App extends Component {
   state = {
     user_name: "",
-    stock: [],
+    stock: {
+      symbol: "",
+      prices: [{ x: "", y: 0 }]
+    },
     portfolio: {
       cash: 10000,
       shares: 0,
@@ -32,6 +36,7 @@ class App extends Component {
     return (
       <>
         <Navbar />
+        <Chart stock={this.state.stock} />
       </>
     );
   }
