@@ -1,31 +1,27 @@
 import React, { Component } from "react";
 import CanvasJSReact from "../lib/canvasjs.react";
+import { connect } from "react-redux";
+import { selectStock } from "../actions";
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
-export default class Chart extends Component {
+class Chart extends Component {
   render() {
-    let prices = [
-      { x: new Date(2017, 0), y: 25060 },
-      { x: new Date(2017, 1), y: 27980 },
-      { x: new Date(2017, 2), y: 42800 },
-      { x: new Date(2017, 3), y: 32400 },
-      { x: new Date(2017, 4), y: 35260 },
-      { x: new Date(2017, 5), y: 33900 },
-      { x: new Date(2017, 6), y: 40000 },
-      { x: new Date(2017, 7), y: 52500 },
-      { x: new Date(2017, 8), y: 32300 },
-      { x: new Date(2017, 9), y: 42000 },
-      { x: new Date(2017, 10), y: 37160 },
-      { x: new Date(2017, 11), y: 38400 },
-      { x: new Date(2017, 12), y: 50000 }
-    ];
+    let prices = this.props.stock.prices.map(item => {
+      let year = item.date.substring(0, 4);
+      let month = item.date.substring(5, 7);
+      let day = item.date.substring(8, 10);
+      return { x: new Date(`${year}, ${month}, ${day}`), y: item.price };
+    });
+
     let options = {
       animationEnabled: true,
+      animationDuration: 15000,
       title: {
         text: "Stock: ___ - Dates: ___"
       },
       axisX: {
-        valueFormatString: "MMM"
+        valueFormatString: "MMM",
+        labelFontColor: "transparent"
       },
       axisY: {
         prefix: "$",
@@ -33,7 +29,7 @@ export default class Chart extends Component {
       },
       data: [
         {
-          yValueFormatString: "$#,###",
+          yValueFormatString: "$#,###.#0",
           xValueFormatString: "MMMM",
           type: "spline",
           dataPoints: prices
@@ -51,3 +47,14 @@ export default class Chart extends Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    stock: state.stock
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { selectedStock: selectStock }
+)(Chart);
