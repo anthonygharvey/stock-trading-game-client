@@ -1,18 +1,38 @@
 import React, { Component } from "react";
 import CanvasJSReact from "../lib/canvasjs.react";
 import { connect } from "react-redux";
-import { selectStock } from "../actions";
+import {
+  updatePrices,
+  startingBell,
+  newDay,
+  getCurrentPrice
+} from "../actions";
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 class Chart extends Component {
-  render() {
-    let prices = this.props.stock.prices.map(item => {
-      let year = item.date.substring(0, 4);
-      let month = item.date.substring(5, 7);
-      let day = item.date.substring(8, 10);
-      return { x: new Date(`${year}, ${month}, ${day}`), y: item.price };
+  updateChart() {
+    let chart = this.chart;
+    let length = this.props.stock.prices.length - 1;
+    let price = [this.props.stock.prices[length]].map(price => {
+      let year = price.date.substring(0, 4);
+      let month = price.date.substring(5, 7);
+      let day = price.date.substring(8, 10);
+      return { x: new Date(`${year}, ${month}, ${day}`), y: price.price };
     });
+    this.props.getCurrentPrice(this.props.stock.prices);
+    this.props.newDay(this.props.stock.prices);
+    chart.options.data[0].dataPoints.push(price[0]);
+    chart.render();
+  }
 
+  componentDidMount() {
+    this.props.startingBell();
+    this.updateChart();
+    this.updateChart();
+    this.updateChart();
+  }
+
+  render() {
     let options = {
       animationEnabled: true,
       animationDuration: 15000,
@@ -32,16 +52,13 @@ class Chart extends Component {
           yValueFormatString: "$#,###.#0",
           xValueFormatString: "MMMM",
           type: "spline",
-          dataPoints: prices
+          dataPoints: this.props.prices
         }
       ]
     };
     return (
       <div>
-        <CanvasJSChart
-          options={options}
-          /* onRef={ref => this.chart = ref} */
-        />
+        <CanvasJSChart options={options} onRef={ref => (this.chart = ref)} />
         {/*You can get reference to the chart instance as shown above using onRef. This allows you to access all chart properties and methods*/}
       </div>
     );
@@ -50,11 +67,18 @@ class Chart extends Component {
 
 const mapStateToProps = state => {
   return {
-    stock: state.stock
+    stock: state.stock,
+    prices: state.prices,
+    currentPrice: state.currentPrice
   };
 };
 
 export default connect(
   mapStateToProps,
-  { selectedStock: selectStock }
+  {
+    startingBell: startingBell,
+    updatePrices: updatePrices,
+    newDay: newDay,
+    getCurrentPrice: getCurrentPrice
+  }
 )(Chart);

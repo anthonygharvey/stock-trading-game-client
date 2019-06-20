@@ -408,16 +408,35 @@ const stockReducer = () => {
   };
 };
 
-const selectedStockReducer = (selectedStock = null, action) => {
-  if (action.type === "SELECTED_STOCK") {
-    return action.payload;
+const updatePricesReducer = (prices = [], action) => {
+  if (action.type === "UPDATE_PRICES") {
+    // let price = action.payload.stock.prices.pop();
+    // debugger;
+    // return [...prices, price];
+    return [...prices, action.payload.price];
   }
+  return prices;
+};
 
-  return selectedStock;
+const newDayReducer = (stockPrices = [], action) => {
+  if (action.type === "NEW_DAY") {
+    return action.payload.pop();
+  }
+  return stockPrices;
+};
+
+const currentPriceReducer = (stockPrices = [], action) => {
+  if (action.type === "GET_CURRENT_PRICE") {
+    const length = action.payload.length;
+    return action.payload[length - 1];
+  }
+  return stockPrices;
 };
 
 // any file can get access to the combined set of reducers
 export default combineReducers({
   stock: stockReducer,
-  selectedStock: selectedStockReducer
+  newDay: newDayReducer,
+  currentPrice: currentPriceReducer,
+  prices: updatePricesReducer
 });
