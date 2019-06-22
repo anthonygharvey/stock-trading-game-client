@@ -24,9 +24,12 @@ export const updateDay = day => {
   };
 };
 
-export const getCurrentPrice = stockPrices => {
+export const getCurrentPrice = (prices, day) => {
   return {
     type: "GET_CURRENT_PRICE",
-    payload: stockPrices
+    payload: {
+      prices: prices,
+      day: day
+    }
   };
 };

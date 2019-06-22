@@ -432,12 +432,20 @@ const updateDayReducer = (day = 0, action) => {
   return day;
 };
 
-const currentPriceReducer = (stockPrices = [], action) => {
+const currentPriceReducer = (prices = [], action) => {
   if (action.type === "GET_CURRENT_PRICE") {
-    const length = action.payload.length;
-    return action.payload[length - 1];
+    let price = action.payload.prices
+      .slice(-action.payload.day - 1)
+      .map(price => {
+        let year = price.date.substring(0, 4);
+        let month = price.date.substring(5, 7);
+        let day = price.date.substring(8, 10);
+        return { x: new Date(`${year}, ${month}, ${day}`), y: price.price };
+      });
+
+    return price[0];
   }
-  return stockPrices;
+  return prices;
 };
 
 // any file can get access to the combined set of reducers

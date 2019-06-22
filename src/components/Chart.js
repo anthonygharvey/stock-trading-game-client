@@ -45,6 +45,7 @@ class Chart extends Component {
           onClick={() => {
             this.props.updateDay(this.props.day);
             this.props.updatePrices(this.props.stock.prices, this.props.day);
+            this.props.getCurrentPrice(this.props.stock.prices, this.props.day);
           }}
         >
           Update Chart
