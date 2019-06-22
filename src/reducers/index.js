@@ -410,16 +410,26 @@ const stockReducer = () => {
 
 const updatePricesReducer = (prices = [], action) => {
   if (action.type === "UPDATE_PRICES") {
-    return [...prices, action.payload.price];
+    let price = action.payload.prices
+      .slice(-action.payload.day - 1)
+      .map(price => {
+        let year = price.date.substring(0, 4);
+        let month = price.date.substring(5, 7);
+        let day = price.date.substring(8, 10);
+        return { x: new Date(`${year}, ${month}, ${day}`), y: price.price };
+      });
+
+    action.payload.prices.slice(0, -1);
+    return [...prices, price[0]];
   }
   return prices;
 };
 
-const newDayReducer = (stockPrices = [], action) => {
-  if (action.type === "NEW_DAY") {
-    return action.payload.pop(); // removes the last element in the prices array
+const updateDayReducer = (day = 0, action) => {
+  if (action.type === "UPDATE_DAY") {
+    return (day += 1);
   }
-  return stockPrices;
+  return day;
 };
 
 const currentPriceReducer = (stockPrices = [], action) => {
@@ -433,7 +443,7 @@ const currentPriceReducer = (stockPrices = [], action) => {
 // any file can get access to the combined set of reducers
 export default combineReducers({
   stock: stockReducer,
-  newDay: newDayReducer,
-  currentPrice: currentPriceReducer,
-  prices: updatePricesReducer
+  day: updateDayReducer,
+  prices: updatePricesReducer,
+  currentPrice: currentPriceReducer
 });

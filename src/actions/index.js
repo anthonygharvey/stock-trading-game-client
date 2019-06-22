@@ -5,19 +5,22 @@ export const startingBell = prices => {
   };
 };
 
-export const updatePrices = price => {
+export const updatePrices = (prices, day) => {
   return {
     type: "UPDATE_PRICES",
     payload: {
-      price: price
+      prices: prices,
+      day: day
     }
   };
 };
 
-export const newDay = stockPrices => {
+export const updateDay = day => {
   return {
-    type: "NEW_DAY",
-    payload: stockPrices
+    type: "UPDATE_DAY",
+    payload: {
+      day: day
+    }
   };
 };
 
