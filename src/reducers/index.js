@@ -410,9 +410,6 @@ const stockReducer = () => {
 
 const updatePricesReducer = (prices = [], action) => {
   if (action.type === "UPDATE_PRICES") {
-    // let price = action.payload.stock.prices.pop();
-    // debugger;
-    // return [...prices, price];
     return [...prices, action.payload.price];
   }
   return prices;
@@ -420,7 +417,7 @@ const updatePricesReducer = (prices = [], action) => {
 
 const newDayReducer = (stockPrices = [], action) => {
   if (action.type === "NEW_DAY") {
-    return action.payload.pop();
+    return action.payload.pop(); // removes the last element in the prices array
   }
   return stockPrices;
 };

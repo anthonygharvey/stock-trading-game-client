@@ -19,15 +19,13 @@ class Chart extends Component {
       let day = price.date.substring(8, 10);
       return { x: new Date(`${year}, ${month}, ${day}`), y: price.price };
     });
-    this.props.getCurrentPrice(this.props.stock.prices);
+    this.props.getCurrentPrice(this.props.stock.prices); // gets the last element in the prices array
     this.props.newDay(this.props.stock.prices);
-    chart.options.data[0].dataPoints.push(price[0]);
-    chart.render();
+    this.props.updatePrices(price[0]);
   }
 
   componentDidMount() {
     this.props.startingBell();
-    this.updateChart();
     this.updateChart();
     this.updateChart();
   }
