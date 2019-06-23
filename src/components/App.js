@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Navbar from "./Navigation";
+import Portfolio from "./Portfolio";
 import Chart from "./Chart";
 
 class App extends Component {
@@ -7,6 +8,7 @@ class App extends Component {
     return (
       <>
         <Navbar />
+        <Portfolio />
         <Chart />
       </>
     );

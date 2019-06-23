@@ -47,9 +47,17 @@ const currentPriceReducer = (prices = [], action) => {
   return prices;
 };
 
+const newPortfolioReducer = (portfolio = {}, action) => {
+  if (action.type === "NEW_PORTFOLIO") {
+    return action.payload;
+  }
+  return portfolio;
+};
+
 // any file can get access to the combined set of reducers
 export default combineReducers({
   stock: stockReducer,
+  portfolio: newPortfolioReducer,
   day: updateDayReducer,
   prices: updatePricesReducer,
   currentPrice: currentPriceReducer

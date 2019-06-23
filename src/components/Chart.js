@@ -13,9 +13,11 @@ var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 class Chart extends Component {
   startGame() {
     let timerId = setInterval(() => {
+      const { day } = this.props;
+      const { prices } = this.props.stock;
       this.props.updateDay(this.props.day);
-      this.props.updatePrices(this.props.stock.prices, this.props.day);
-      this.props.getCurrentPrice(this.props.stock.prices, this.props.day);
+      this.props.updatePrices(prices, day);
+      this.props.getCurrentPrice(prices, day);
     }, 200);
 
     setTimeout(() => {
@@ -74,7 +76,8 @@ const mapStateToProps = state => {
     stock: state.stock,
     day: state.day,
     prices: state.prices,
-    currentPrice: state.currentPrice
+    currentPrice: state.currentPrice,
+    portfolio: state.portfolio
   };
 };
 
