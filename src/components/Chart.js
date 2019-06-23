@@ -10,9 +10,19 @@ import {
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 class Chart extends Component {
-  updateChart() {
-    this.props.updatePrices(this.props.stock.prices);
+  startGame() {
+    let timerId = setInterval(() => {
+      this.props.updateDay(this.props.day);
+      this.props.updatePrices(this.props.stock.prices, this.props.day);
+      this.props.getCurrentPrice(this.props.stock.prices, this.props.day);
+    }, 200);
+
+    setTimeout(() => {
+      clearInterval(timerId);
+    }, 200 * 100);
   }
+
+  componentDidMount() {}
 
   render() {
     let options = {
@@ -34,6 +44,7 @@ class Chart extends Component {
           yValueFormatString: "$#,###.#0",
           xValueFormatString: "MMMM",
           type: "spline",
+          markerType: "none",
           dataPoints: this.props.prices
         }
       ]
@@ -43,12 +54,13 @@ class Chart extends Component {
         <button
           className="ui button primary"
           onClick={() => {
-            this.props.updateDay(this.props.day);
-            this.props.updatePrices(this.props.stock.prices, this.props.day);
-            this.props.getCurrentPrice(this.props.stock.prices, this.props.day);
+            this.startGame();
+            // this.props.updateDay(this.props.day);
+            // this.props.updatePrices(this.props.stock.prices, this.props.day);
+            // this.props.getCurrentPrice(this.props.stock.prices, this.props.day);
           }}
         >
-          Update Chart
+          Start Game
         </button>
         <CanvasJSChart options={options} onRef={ref => (this.chart = ref)} />
         {/*You can get reference to the chart instance as shown above using onRef. This allows you to access all chart properties and methods*/}
