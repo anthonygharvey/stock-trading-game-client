@@ -5,7 +5,8 @@ import {
   updatePrices,
   startingBell,
   updateDay,
-  getCurrentPrice
+  getCurrentPrice,
+  fetchStock
 } from "../actions";
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
@@ -22,7 +23,9 @@ class Chart extends Component {
     }, 200 * 100);
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    this.props.fetchStock();
+  }
 
   render() {
     let options = {
@@ -55,9 +58,6 @@ class Chart extends Component {
           className="ui button primary"
           onClick={() => {
             this.startGame();
-            // this.props.updateDay(this.props.day);
-            // this.props.updatePrices(this.props.stock.prices, this.props.day);
-            // this.props.getCurrentPrice(this.props.stock.prices, this.props.day);
           }}
         >
           Start Game
@@ -84,6 +84,7 @@ export default connect(
     startingBell: startingBell,
     updatePrices: updatePrices,
     updateDay: updateDay,
-    getCurrentPrice: getCurrentPrice
+    getCurrentPrice: getCurrentPrice,
+    fetchStock: fetchStock
   }
 )(Chart);
