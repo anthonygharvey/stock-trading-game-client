@@ -1,4 +1,5 @@
 import { combineReducers } from "redux";
+import { newPortfolioReducer } from "./portfolio";
 
 const stockReducer = (stock = {}, action) => {
   if (action.type === "FETCH_STOCK") {
@@ -45,13 +46,6 @@ const currentPriceReducer = (prices = [], action) => {
     return price[0];
   }
   return prices;
-};
-
-const newPortfolioReducer = (portfolio = {}, action) => {
-  if (action.type === "NEW_PORTFOLIO") {
-    return action.payload;
-  }
-  return portfolio;
 };
 
 // any file can get access to the combined set of reducers

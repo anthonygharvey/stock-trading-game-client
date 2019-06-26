@@ -9,9 +9,17 @@ class Portfolio extends Component {
 
   render() {
     const { cash, shares, share_value, total_value } = this.props.portfolio;
+    let { currentPrice } = this.props;
+
+    if (currentPrice === undefined) {
+      currentPrice = "0.00";
+    } else {
+      currentPrice = currentPrice.toFixed(2);
+    }
+
     return (
       <div>
-        <h2>Current Price: {this.props.currentPrice || "$0.00"}</h2>
+        <h2>Current Price: {`$${currentPrice}`}</h2>
         <h2>Portfolio</h2>
         <ul>
           <li>Cash: {cash}</li>
