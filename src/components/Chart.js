@@ -6,7 +6,9 @@ import {
   startingBell,
   updateDay,
   getCurrentPrice,
-  fetchStock
+  fetchStock,
+  buy,
+  updateValues
 } from "../actions";
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
@@ -15,9 +17,12 @@ class Chart extends Component {
     let timerId = setInterval(() => {
       const { day } = this.props;
       const { prices } = this.props.stock;
+      const { portfolio } = this.props;
+      const { currentPrice } = this.props;
       this.props.updateDay(this.props.day);
       this.props.updatePrices(prices, day);
       this.props.getCurrentPrice(prices, day);
+      this.props.updateValues(portfolio, currentPrice);
     }, 200);
 
     setTimeout(() => {
@@ -64,6 +69,15 @@ class Chart extends Component {
         >
           Start Game
         </button>
+        <button
+          className="ui button primary"
+          onClick={() => {
+            this.props.buy(this.props.currentPrice.y, this.props.portfolio);
+            // this.props.buy(this.props);
+          }}
+        >
+          BUY
+        </button>
         <CanvasJSChart options={options} onRef={ref => (this.chart = ref)} />
         {/*You can get reference to the chart instance as shown above using onRef. This allows you to access all chart properties and methods*/}
       </div>
@@ -88,6 +102,8 @@ export default connect(
     updatePrices: updatePrices,
     updateDay: updateDay,
     getCurrentPrice: getCurrentPrice,
-    fetchStock: fetchStock
+    fetchStock: fetchStock,
+    buy: buy,
+    updateValues: updateValues
   }
 )(Chart);

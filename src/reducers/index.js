@@ -1,5 +1,7 @@
 import { combineReducers } from "redux";
 import { newPortfolioReducer } from "./portfolio";
+import { buyReducer } from "./buyAndSell";
+import { updateValuesReducer } from "./buyAndSell";
 
 const stockReducer = (stock = {}, action) => {
   if (action.type === "FETCH_STOCK") {
@@ -54,5 +56,7 @@ export default combineReducers({
   portfolio: newPortfolioReducer,
   day: updateDayReducer,
   prices: updatePricesReducer,
-  currentPrice: currentPriceReducer
+  currentPrice: currentPriceReducer,
+  buy: buyReducer,
+  updateValues: updateValuesReducer
 });
