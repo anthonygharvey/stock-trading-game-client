@@ -33,6 +33,24 @@ class Chart extends Component {
 
   componentDidMount() {
     this.props.fetchStock();
+    document.addEventListener("keydown", e => {
+      let cursor = e.keyCode;
+      if (cursor === 66) {
+        this.props.buy(
+          this.props.currentPrice.y,
+          this.props.portfolio,
+          this.props.prices
+        );
+      }
+
+      if (cursor === 83) {
+        this.props.sell(
+          this.props.currentPrice.y,
+          this.props.portfolio,
+          this.props.prices
+        );
+      }
+    });
   }
 
   render() {

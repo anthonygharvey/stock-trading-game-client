@@ -21,7 +21,7 @@ export const sellReducer = (initialState = {}, action) => {
   if (action.type === "SELL") {
     const { currentPrice } = action.payload;
     const { portfolio } = action.payload;
-    let { cash, shares } = portfolio;
+    let { shares } = portfolio;
     const validTrade = shares > 0;
     const day = action.payload.chartPrices.length - 1;
     if (validTrade) {
@@ -38,7 +38,7 @@ export const sellReducer = (initialState = {}, action) => {
 
 export const updateValuesReducer = (initialState = {}, action) => {
   if (action.type === "UPDATE_VALUES") {
-    let { share_value, total_value, shares, cash } = action.payload.portfolio;
+    let { share_value, shares, cash } = action.payload.portfolio;
     let { currentPrice } = action.payload;
     action.payload.portfolio.share_value =
       shares * (currentPrice.length === 0 ? 0 : currentPrice.y);
