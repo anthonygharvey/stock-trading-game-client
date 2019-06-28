@@ -56,6 +56,7 @@ class Chart extends Component {
           xValueFormatString: "MMMM",
           type: "spline",
           markerType: "none",
+          // visible: false,
           dataPoints: this.props.prices
         }
       ]
@@ -73,7 +74,11 @@ class Chart extends Component {
         <button
           className="ui button primary"
           onClick={() => {
-            this.props.buy(this.props.currentPrice.y, this.props.portfolio);
+            this.props.buy(
+              this.props.currentPrice.y,
+              this.props.portfolio,
+              this.props.prices
+            );
           }}
         >
           BUY
@@ -81,7 +86,11 @@ class Chart extends Component {
         <button
           className="ui button primary"
           onClick={() => {
-            this.props.sell(this.props.currentPrice.y, this.props.portfolio);
+            this.props.sell(
+              this.props.currentPrice.y,
+              this.props.portfolio,
+              this.props.prices
+            );
           }}
         >
           SELL

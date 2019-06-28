@@ -4,7 +4,11 @@ export const buyReducer = (initialState = {}, action) => {
     const { portfolio } = action.payload;
     let { cash } = portfolio;
     const validTrade = cash >= currentPrice;
+    const day = action.payload.chartPrices.length - 1;
     if (validTrade) {
+      action.payload.chartPrices[day].markerColor = "green";
+      action.payload.chartPrices[day].markerSize = 11;
+      action.payload.chartPrices[day].markerType = "circle";
       portfolio.user_name = "ANTHONY";
       portfolio.cash -= currentPrice;
       portfolio.shares += 1;
@@ -19,7 +23,11 @@ export const sellReducer = (initialState = {}, action) => {
     const { portfolio } = action.payload;
     let { cash, shares } = portfolio;
     const validTrade = shares > 0;
+    const day = action.payload.chartPrices.length - 1;
     if (validTrade) {
+      action.payload.chartPrices[day].markerColor = "red";
+      action.payload.chartPrices[day].markerSize = 11;
+      action.payload.chartPrices[day].markerType = "circle";
       portfolio.user_name = "SOLD!";
       portfolio.shares -= 1;
       portfolio.cash += currentPrice;

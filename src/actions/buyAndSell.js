@@ -1,19 +1,21 @@
-export const buy = (currentPrice, portfolio) => {
+export const buy = (currentPrice, portfolio, chartPrices) => {
   return {
     type: "BUY",
     payload: {
       portfolio: portfolio,
-      currentPrice: currentPrice
+      currentPrice: currentPrice,
+      chartPrices: chartPrices
     }
   };
 };
 
-export const sell = (currentPrice, portfolio) => {
+export const sell = (currentPrice, portfolio, chartPrices) => {
   return {
     type: "SELL",
     payload: {
       portfolio: portfolio,
-      currentPrice: currentPrice
+      currentPrice: currentPrice,
+      chartPrices: chartPrices
     }
   };
 };
