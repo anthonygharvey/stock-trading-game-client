@@ -8,6 +8,7 @@ import {
   getCurrentPrice,
   fetchStock,
   buy,
+  sell,
   updateValues
 } from "../actions";
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
@@ -73,10 +74,17 @@ class Chart extends Component {
           className="ui button primary"
           onClick={() => {
             this.props.buy(this.props.currentPrice.y, this.props.portfolio);
-            // this.props.buy(this.props);
           }}
         >
           BUY
+        </button>
+        <button
+          className="ui button primary"
+          onClick={() => {
+            this.props.sell(this.props.currentPrice.y, this.props.portfolio);
+          }}
+        >
+          SELL
         </button>
         <CanvasJSChart options={options} onRef={ref => (this.chart = ref)} />
         {/*You can get reference to the chart instance as shown above using onRef. This allows you to access all chart properties and methods*/}
@@ -104,6 +112,7 @@ export default connect(
     getCurrentPrice: getCurrentPrice,
     fetchStock: fetchStock,
     buy: buy,
+    sell: sell,
     updateValues: updateValues
   }
 )(Chart);

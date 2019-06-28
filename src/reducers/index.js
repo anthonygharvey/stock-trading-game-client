@@ -1,6 +1,7 @@
 import { combineReducers } from "redux";
 import { newPortfolioReducer } from "./portfolio";
 import { buyReducer } from "./buyAndSell";
+import { sellReducer } from "./buyAndSell";
 import { updateValuesReducer } from "./buyAndSell";
 
 const stockReducer = (stock = {}, action) => {
@@ -58,5 +59,6 @@ export default combineReducers({
   prices: updatePricesReducer,
   currentPrice: currentPriceReducer,
   buy: buyReducer,
+  sell: sellReducer,
   updateValues: updateValuesReducer
 });

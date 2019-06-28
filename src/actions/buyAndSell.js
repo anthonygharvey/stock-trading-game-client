@@ -8,6 +8,16 @@ export const buy = (currentPrice, portfolio) => {
   };
 };
 
+export const sell = (currentPrice, portfolio) => {
+  return {
+    type: "SELL",
+    payload: {
+      portfolio: portfolio,
+      currentPrice: currentPrice
+    }
+  };
+};
+
 export const updateValues = (portfolio, currentPrice) => {
   return {
     type: "UPDATE_VALUES",
