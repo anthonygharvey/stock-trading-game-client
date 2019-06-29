@@ -28,7 +28,30 @@ class Chart extends Component {
 
     setTimeout(() => {
       clearInterval(timerId);
+      this.endGame();
     }, 200 * 100);
+  }
+
+  updateTitle() {
+    var symbol = this.props.stock.symbol;
+    var startDate = this.props.stock.prices[99].date;
+    var endDate = this.props.stock.prices[0].date;
+
+    var dates = [startDate, endDate].map(date => {
+      var year = date.substring(0, 4);
+      var month = date.substring(5, 7);
+      var day = date.substring(8, 10);
+      return `${month}/${day}/${year}`;
+    });
+
+    this.chart.options.title.text = `Stock: ${symbol} - Dates: ${dates.join(
+      " - "
+    )}`;
+    this.chart.render();
+  }
+
+  endGame() {
+    this.updateTitle();
   }
 
   componentDidMount() {
@@ -74,7 +97,6 @@ class Chart extends Component {
           xValueFormatString: "MMMM",
           type: "spline",
           markerType: "none",
-          // visible: false,
           dataPoints: this.props.prices
         }
       ]

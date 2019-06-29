@@ -7,7 +7,7 @@ export const buyReducer = (initialState = {}, action) => {
     const day = action.payload.chartPrices.length - 1;
     if (validTrade) {
       action.payload.chartPrices[day].markerColor = "green";
-      action.payload.chartPrices[day].markerSize = 11;
+      action.payload.chartPrices[day].markerSize = 10;
       action.payload.chartPrices[day].markerType = "circle";
       portfolio.user_name = "ANTHONY";
       portfolio.cash -= currentPrice;
@@ -26,7 +26,7 @@ export const sellReducer = (initialState = {}, action) => {
     const day = action.payload.chartPrices.length - 1;
     if (validTrade) {
       action.payload.chartPrices[day].markerColor = "red";
-      action.payload.chartPrices[day].markerSize = 11;
+      action.payload.chartPrices[day].markerSize = 10;
       action.payload.chartPrices[day].markerType = "circle";
       portfolio.user_name = "SOLD!";
       portfolio.shares -= 1;

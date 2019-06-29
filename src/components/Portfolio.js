@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { newPortfolio } from "../actions";
+import UsernameInput from "./UsernameInput";
 
 class Portfolio extends Component {
   componentDidMount() {
@@ -21,6 +22,7 @@ class Portfolio extends Component {
       <div>
         <h2>Current Price: {`$${currentPrice}`}</h2>
         <h2>Portfolio</h2>
+        <UsernameInput />
         <ul>
           <li>Cash: {cash}</li>
           <li>Shares: {shares}</li>
