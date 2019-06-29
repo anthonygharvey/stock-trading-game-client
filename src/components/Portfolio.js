@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { newPortfolio } from "../actions";
+import { updateUsername } from "../actions";
 import UsernameInput from "./UsernameInput";
 
 class Portfolio extends Component {
@@ -44,6 +45,7 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   {
-    newPortfolio: newPortfolio
+    newPortfolio: newPortfolio,
+    updateUsername: updateUsername
   }
 )(Portfolio);

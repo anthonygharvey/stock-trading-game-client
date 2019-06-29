@@ -13,3 +13,13 @@ export const newPortfolio = () => {
     }
   };
 };
+
+export const updateUsername = (user_name, portfolio) => {
+  return {
+    type: "UPDATE_USERNAME",
+    payload: {
+      user_name: user_name,
+      portfolio: portfolio
+    }
+  };
+};

@@ -9,7 +9,6 @@ export const buyReducer = (initialState = {}, action) => {
       action.payload.chartPrices[day].markerColor = "green";
       action.payload.chartPrices[day].markerSize = 10;
       action.payload.chartPrices[day].markerType = "circle";
-      portfolio.user_name = "ANTHONY";
       portfolio.cash -= currentPrice;
       portfolio.shares += 1;
     }
@@ -28,7 +27,6 @@ export const sellReducer = (initialState = {}, action) => {
       action.payload.chartPrices[day].markerColor = "red";
       action.payload.chartPrices[day].markerSize = 10;
       action.payload.chartPrices[day].markerType = "circle";
-      portfolio.user_name = "SOLD!";
       portfolio.shares -= 1;
       portfolio.cash += currentPrice;
     }

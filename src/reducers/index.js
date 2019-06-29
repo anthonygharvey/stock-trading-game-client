@@ -1,5 +1,6 @@
 import { combineReducers } from "redux";
 import { newPortfolioReducer } from "./portfolio";
+import { updateUsernameReducer } from "./portfolio";
 import { buyReducer } from "./buyAndSell";
 import { sellReducer } from "./buyAndSell";
 import { updateValuesReducer } from "./buyAndSell";
@@ -60,5 +61,6 @@ export default combineReducers({
   currentPrice: currentPriceReducer,
   buy: buyReducer,
   sell: sellReducer,
-  updateValues: updateValuesReducer
+  updateValues: updateValuesReducer,
+  updateUsername: updateUsernameReducer
 });

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import CanvasJSReact from "../lib/canvasjs.react";
+import { UserName } from "../lib/randomUser";
 import { connect } from "react-redux";
 import {
   updatePrices,
@@ -15,6 +16,7 @@ var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 class Chart extends Component {
   startGame() {
+    this.props.portfolio.stock = this.props.stock.symbol;
     let timerId = setInterval(() => {
       const { day } = this.props;
       const { prices } = this.props.stock;
@@ -50,8 +52,16 @@ class Chart extends Component {
     this.chart.render();
   }
 
+  saveGame() {
+    let user = this.props.portfolio.user_name;
+    if (user === "") {
+      this.props.portfolio.user_name = UserName();
+    }
+  }
+
   endGame() {
     this.updateTitle();
+    this.saveGame();
   }
 
   componentDidMount() {
