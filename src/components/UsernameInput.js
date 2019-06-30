@@ -13,7 +13,6 @@ class UsernameInput extends Component {
         <input
           type="text"
           placeholder="username"
-          // value={this.state.username}
           onChange={this.handleNameChange}
         />
       </div>
