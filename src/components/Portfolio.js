@@ -10,13 +10,23 @@ class Portfolio extends Component {
   }
 
   render() {
-    const { cash, shares, share_value, total_value } = this.props.portfolio;
+    let { cash, shares } = this.props.portfolio;
     let { currentPrice } = this.props;
 
-    if (currentPrice === undefined) {
-      currentPrice = "0.00";
+    if (cash === undefined) {
+      cash = 0;
     } else {
-      currentPrice = currentPrice.toFixed(8);
+      cash = cash.toFixed(2);
+    }
+
+    if (currentPrice === undefined) {
+      currentPrice = 0;
+    } else {
+      currentPrice = currentPrice.toFixed(2);
+    }
+
+    if (shares === undefined) {
+      shares = 0;
     }
 
     return (
@@ -27,8 +37,11 @@ class Portfolio extends Component {
         <ul>
           <li>Cash: {cash}</li>
           <li>Shares: {shares}</li>
-          <li>Share Value: {shares * currentPrice}</li>
-          <li>Total Value: {shares * currentPrice + cash}</li>
+          <li>Share Value: {parseFloat(shares * currentPrice).toFixed(2)}</li>
+          <li>
+            Total Value:{" "}
+            {(parseFloat(shares * currentPrice) + parseFloat(cash)).toFixed(2)}
+          </li>
         </ul>
       </div>
     );

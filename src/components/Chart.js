@@ -70,8 +70,6 @@ class Chart extends Component {
         }
       }
     };
-    console.log("game saved!");
-    console.log(game);
     this.postGame(game);
   }
 

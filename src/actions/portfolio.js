@@ -5,7 +5,7 @@ export const newPortfolio = () => {
       user_name: "",
       initial_balance: 1000,
       cash: 1000,
-      commission: 1.5,
+      commission: 0,
       stock: "",
       shares: 0,
       share_value: 0,
