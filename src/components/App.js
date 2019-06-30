@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { BrowserRouter, Route, Link } from "react-router-dom";
+import { BrowserRouter, Route } from "react-router-dom";
 import Navbar from "./Navigation";
-import Portfolio from "./Portfolio";
+import PortfolioContainer from "./PortfolioContainer";
 import Chart from "./Chart";
 import About from "./About";
 import Leaderboard from "./Leaderboard";
@@ -9,15 +9,13 @@ import Leaderboard from "./Leaderboard";
 class App extends Component {
   render() {
     return (
-      <>
-        <BrowserRouter>
-          <Route path="/" component={Navbar} />
-          <Route path="/" exact component={Portfolio} />
-          <Route path="/" exact component={Chart} />
-          <Route path="/about" exact component={About} />
-          <Route path="/leaderboard" exact component={Leaderboard} />
-        </BrowserRouter>
-      </>
+      <BrowserRouter>
+        <Route path="/" component={Navbar} />
+        <Route path="/" exact component={PortfolioContainer} />
+        <Route path="/" exact component={Chart} />
+        <Route path="/about" exact component={About} />
+        <Route path="/leaderboard" exact component={Leaderboard} />
+      </BrowserRouter>
     );
   }
 }

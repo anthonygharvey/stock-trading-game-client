@@ -14,10 +14,10 @@ const Navbar = () => {
 
       <div className="right menu">
         <Link to="/leaderboard">
-          <div1 className="item">Leaderboard</div1>
+          <div className="item">Leaderboard</div>
         </Link>
         <Link to="/about">
-          <div1 className="item">About</div1>
+          <div className="item">About</div>
         </Link>
       </div>
     </div>
