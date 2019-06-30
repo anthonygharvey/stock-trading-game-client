@@ -23,9 +23,9 @@ function addTrade(type, payload, day) {
   let trade = {
     date: payload.chartPrices[day].x,
     order_type: type,
-    symbol: payload.portfolio.stock,
-    shares: payload.portfolio.shares,
-    stockPrice: payload.currentPrice,
+    stock_symbol: payload.portfolio.stock,
+    shares: 1,
+    stock_price: payload.currentPrice,
     commission: payload.portfolio.commission
   };
   payload.portfolio.trade_attributes.push(trade);
@@ -41,6 +41,8 @@ export const buyReducer = (initialState = {}, action) => {
       updateChart(action.type, chartPrices, day);
       processTrade(action.type, portfolio, currentPrice);
       addTrade(action.type, action.payload, day);
+      action.payload.portfolio.share_value =
+        action.payload.portfolio.shares * currentPrice;
     }
   }
   return initialState;
@@ -56,18 +58,9 @@ export const sellReducer = (initialState = {}, action) => {
       updateChart(action.type, chartPrices, day);
       processTrade(action.type, portfolio, currentPrice);
       addTrade(action.type, action.payload, day);
+      action.payload.portfolio.share_value =
+        action.payload.portfolio.shares * currentPrice;
     }
-  }
-  return initialState;
-};
-
-export const updateValuesReducer = (initialState = {}, action) => {
-  if (action.type === "UPDATE_VALUES") {
-    let { share_value, shares, cash } = action.payload.portfolio;
-    let { currentPrice } = action.payload;
-    action.payload.portfolio.share_value =
-      shares * (currentPrice.length === 0 ? 0 : currentPrice.y);
-    action.payload.portfolio.total_value = share_value + cash;
   }
   return initialState;
 };

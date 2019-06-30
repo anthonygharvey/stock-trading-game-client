@@ -3,7 +3,6 @@ import { newPortfolioReducer } from "./portfolio";
 import { updateUsernameReducer } from "./portfolio";
 import { buyReducer } from "./buyAndSell";
 import { sellReducer } from "./buyAndSell";
-import { updateValuesReducer } from "./buyAndSell";
 
 const stockReducer = (stock = {}, action) => {
   if (action.type === "FETCH_STOCK") {
@@ -52,7 +51,6 @@ const currentPriceReducer = (prices = [], action) => {
   return prices;
 };
 
-// any file can get access to the combined set of reducers
 export default combineReducers({
   stock: stockReducer,
   portfolio: newPortfolioReducer,
@@ -61,6 +59,5 @@ export default combineReducers({
   currentPrice: currentPriceReducer,
   buy: buyReducer,
   sell: sellReducer,
-  updateValues: updateValuesReducer,
   updateUsername: updateUsernameReducer
 });

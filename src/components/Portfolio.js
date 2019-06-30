@@ -16,7 +16,7 @@ class Portfolio extends Component {
     if (currentPrice === undefined) {
       currentPrice = "0.00";
     } else {
-      currentPrice = currentPrice.toFixed(2);
+      currentPrice = currentPrice.toFixed(8);
     }
 
     return (
@@ -27,8 +27,8 @@ class Portfolio extends Component {
         <ul>
           <li>Cash: {cash}</li>
           <li>Shares: {shares}</li>
-          <li>Share Value: {share_value}</li>
-          <li>Total Value: {total_value}</li>
+          <li>Share Value: {shares * currentPrice}</li>
+          <li>Total Value: {shares * currentPrice + cash}</li>
         </ul>
       </div>
     );

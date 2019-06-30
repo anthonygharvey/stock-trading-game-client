@@ -9,8 +9,7 @@ import {
   getCurrentPrice,
   fetchStock,
   buy,
-  sell,
-  updateValues
+  sell
 } from "../actions";
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
@@ -20,18 +19,15 @@ class Chart extends Component {
     let timerId = setInterval(() => {
       const { day } = this.props;
       const { prices } = this.props.stock;
-      const { portfolio } = this.props;
-      const { currentPrice } = this.props;
+      this.props.getCurrentPrice(prices, day);
       this.props.updateDay(this.props.day);
       this.props.updatePrices(prices, day);
-      this.props.getCurrentPrice(prices, day);
-      this.props.updateValues(portfolio, currentPrice);
-    }, 200);
+    }, 201);
 
     setTimeout(() => {
       clearInterval(timerId);
       this.endGame();
-    }, 200 * 100);
+    }, 201 * 100);
   }
 
   updateTitle() {
@@ -57,6 +53,40 @@ class Chart extends Component {
     if (user === "") {
       this.props.portfolio.user_name = UserName();
     }
+
+    let { portfolio } = this.props;
+    const game = {
+      player: {
+        user_name: portfolio.user_name,
+        portfolio_attributes: {
+          initial_balance: portfolio.initial_balance,
+          cash: portfolio.cash,
+          stock: portfolio.stock,
+          shares: portfolio.shares,
+          share_value: portfolio.shares * this.props.currentPrice,
+          total_value:
+            portfolio.shares * this.props.currentPrice.y + portfolio.cash,
+          trades_attributes: portfolio.trade_attributes
+        }
+      }
+    };
+    console.log("game saved!");
+    console.log(game);
+    this.postGame(game);
+  }
+
+  postGame(game) {
+    const API_URL = process.env.REACT_APP_API_URL;
+    fetch(`${API_URL}/save_game`, {
+      method: "POST",
+      mode: "cors",
+      cache: "no-cache",
+      creditials: "same-origin",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(game)
+    });
   }
 
   endGame() {
@@ -146,7 +176,6 @@ class Chart extends Component {
           SELL
         </button>
         <CanvasJSChart options={options} onRef={ref => (this.chart = ref)} />
-        {/*You can get reference to the chart instance as shown above using onRef. This allows you to access all chart properties and methods*/}
       </div>
     );
   }
@@ -171,7 +200,6 @@ export default connect(
     getCurrentPrice: getCurrentPrice,
     fetchStock: fetchStock,
     buy: buy,
-    sell: sell,
-    updateValues: updateValues
+    sell: sell
   }
 )(Chart);
