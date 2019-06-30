@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { updateUsername } from "../actions";
+import Username from "./Username";
 
 class UsernameInput extends Component {
   handleNameChange = e => {
@@ -9,13 +10,14 @@ class UsernameInput extends Component {
 
   render() {
     return (
-      <div className="ui input focus">
-        <input
-          type="text"
-          placeholder="username"
-          onChange={this.handleNameChange}
-        />
-      </div>
+      <Username handleNameChange={this.handleNameChange} />
+      // <div className="ui input focus">
+      //   <input
+      //     type="text"
+      //     placeholder="username"
+      //     onChange={this.handleNameChange}
+      //   />
+      // </div>
     );
   }
 }

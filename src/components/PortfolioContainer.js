@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Portfolio from "./Portfolio";
+import Username from "./UsernameContainer";
 import { newPortfolio } from "../actions";
 import { updateUsername } from "../actions";
 
@@ -30,7 +31,11 @@ class PortfolioContainer extends Component {
     }
 
     return (
-      <Portfolio cash={cash} shares={shares} currentPrice={currentPrice} />
+      <>
+        <Username />
+        <br />
+        <Portfolio cash={cash} shares={shares} currentPrice={currentPrice} />
+      </>
     );
   }
 }
