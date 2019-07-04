@@ -10,7 +10,9 @@ const Navbar = () => {
           <Logo />
         </Link>
       </div>
-      <div className="header item">Anoymous Stock Trading Game</div>
+      <Link to="/">
+        <div className="header item">Anoymous Stock Trading Game</div>
+      </Link>
 
       <div className="right menu">
         <Link to="/leaderboard">

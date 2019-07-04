@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Portfolio from "./Portfolio";
-import Username from "./UsernameContainer";
 import { newPortfolio } from "../actions";
-import { updateUsername } from "../actions";
 
 class PortfolioContainer extends Component {
   componentDidMount() {
@@ -30,14 +28,13 @@ class PortfolioContainer extends Component {
 
     return (
       <>
-        <Username />
-        <br />
         <Portfolio
           cash={cash}
           shares={shares}
           currentPrice={currentPrice}
           initial_balance={initial_balance}
         />
+        <br />
       </>
     );
   }
@@ -53,7 +50,6 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   {
-    newPortfolio: newPortfolio,
-    updateUsername: updateUsername
+    newPortfolio: newPortfolio
   }
 )(PortfolioContainer);

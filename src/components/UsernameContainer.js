@@ -9,16 +9,7 @@ class UsernameInput extends Component {
   };
 
   render() {
-    return (
-      <Username handleNameChange={this.handleNameChange} />
-      // <div className="ui input focus">
-      //   <input
-      //     type="text"
-      //     placeholder="username"
-      //     onChange={this.handleNameChange}
-      //   />
-      // </div>
-    );
+    return <Username handleNameChange={this.handleNameChange} />;
   }
 }
 

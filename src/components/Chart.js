@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import CanvasJSReact from "../lib/canvasjs.react";
+import Username from "./UsernameContainer";
 import { UserName } from "../lib/randomUser";
 import { connect } from "react-redux";
 import {
@@ -140,39 +141,42 @@ class Chart extends Component {
       ]
     };
     return (
-      <div>
-        <button
-          className="ui button primary"
-          onClick={() => {
-            this.startGame();
-          }}
-        >
-          Start Game
-        </button>
-        <button
-          className="ui button primary"
-          onClick={() => {
-            this.props.buy(
-              this.props.currentPrice.y,
-              this.props.portfolio,
-              this.props.prices
-            );
-          }}
-        >
-          BUY
-        </button>
-        <button
-          className="ui button primary"
-          onClick={() => {
-            this.props.sell(
-              this.props.currentPrice.y,
-              this.props.portfolio,
-              this.props.prices
-            );
-          }}
-        >
-          SELL
-        </button>
+      <div className="ui grid">
+        <Username />
+        <div>
+          <button
+            className="ui button primary"
+            onClick={() => {
+              this.startGame();
+            }}
+          >
+            Start Game
+          </button>
+          <button
+            className="ui button primary"
+            onClick={() => {
+              this.props.buy(
+                this.props.currentPrice.y,
+                this.props.portfolio,
+                this.props.prices
+              );
+            }}
+          >
+            BUY
+          </button>
+          <button
+            className="ui button primary"
+            onClick={() => {
+              this.props.sell(
+                this.props.currentPrice.y,
+                this.props.portfolio,
+                this.props.prices
+              );
+            }}
+          >
+            SELL
+          </button>
+        </div>
         <CanvasJSChart options={options} onRef={ref => (this.chart = ref)} />
       </div>
     );
