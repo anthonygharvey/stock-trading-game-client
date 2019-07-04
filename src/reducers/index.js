@@ -51,6 +51,13 @@ const currentPriceReducer = (prices = [], action) => {
   return prices;
 };
 
+const leaderboardReducer = (leaderboard = {}, action) => {
+  if (action.type === "GET_LEADERBOARD") {
+    return action.payload;
+  }
+  return leaderboard;
+};
+
 export default combineReducers({
   stock: stockReducer,
   portfolio: newPortfolioReducer,
@@ -59,5 +66,6 @@ export default combineReducers({
   currentPrice: currentPriceReducer,
   buy: buyReducer,
   sell: sellReducer,
-  updateUsername: updateUsernameReducer
+  updateUsername: updateUsernameReducer,
+  leaderboard: leaderboardReducer
 });
