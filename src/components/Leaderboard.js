@@ -24,7 +24,7 @@ class Leaderboard extends Component {
     return (
       <>
         <h3>LEADERBOARD</h3>
-        <table class="ui celled table">
+        <table className="ui celled table">
           <thead>
             <tr>
               <th>Username</th>
@@ -34,12 +34,14 @@ class Leaderboard extends Component {
             </tr>
           </thead>
           {Object.keys(leaderboard).length === 0 ? (
-            <tr />
+            <tbody>
+              <tr />
+            </tbody>
           ) : (
             <tbody>
               {leaderboard.map(player => {
                 return (
-                  <tr>
+                  <tr key={player.id}>
                     <td>{player.user_name}</td>
                     <td>{player.stock}</td>
                     <td>{(player.percentage_change * 100).toFixed(2) + "%"}</td>
