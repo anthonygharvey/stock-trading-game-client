@@ -100,6 +100,7 @@ class Chart extends Component {
 
   componentDidMount() {
     this.props.fetchStock();
+    this.props.prices.length = 0;
     document.addEventListener("keydown", e => {
       const { prices, portfolio, currentPrice } = this.props;
       let cursor = e.keyCode;
