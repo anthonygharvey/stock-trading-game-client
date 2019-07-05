@@ -3,6 +3,7 @@ import React from "react";
 export default function About() {
   return (
     <>
+      <h2>About the Anonymous Stock Trading Game</h2>
       <p>
         Hi, I’m Anthony. I created the Anonymous Stock Trading Game for my final
         project at{" "}
