@@ -11,7 +11,7 @@ const Navbar = () => {
         </Link>
       </div>
       <Link to="/">
-        <div className="header item">Anoymous Stock Trading Game</div>
+        <div className="header item">Anonymous Stock Trading Game</div>
       </Link>
 
       <div className="right menu">
