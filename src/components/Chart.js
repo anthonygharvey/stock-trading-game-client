@@ -16,10 +16,6 @@ var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 class Chart extends Component {
   startGame() {
-    // function refreshPage() {
-    //   document.location.reload(true);
-    // }
-
     let startButton = document.getElementById("start");
     startButton.removeAttribute("click");
     startButton.innerText = "New Game";
@@ -105,21 +101,14 @@ class Chart extends Component {
   componentDidMount() {
     this.props.fetchStock();
     document.addEventListener("keydown", e => {
+      const { prices, portfolio, currentPrice } = this.props;
       let cursor = e.keyCode;
       if (cursor === 66) {
-        this.props.buy(
-          this.props.currentPrice.y,
-          this.props.portfolio,
-          this.props.prices
-        );
+        this.props.buy(currentPrice.y, portfolio, prices);
       }
 
       if (cursor === 83) {
-        this.props.sell(
-          this.props.currentPrice.y,
-          this.props.portfolio,
-          this.props.prices
-        );
+        this.props.sell(currentPrice.y, portfolio, prices);
       }
     });
   }
