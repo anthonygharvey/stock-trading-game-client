@@ -16,6 +16,15 @@ var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 class Chart extends Component {
   startGame() {
+    // function refreshPage() {
+    //   document.location.reload(true);
+    // }
+
+    let startButton = document.getElementById("start");
+    startButton.removeAttribute("click");
+    startButton.innerText = "New Game";
+    startButton.addEventListener("click", () => document.location.reload(true));
+
     this.props.portfolio.stock = this.props.stock.symbol;
     let timerId = setInterval(() => {
       const { day } = this.props;
@@ -145,6 +154,7 @@ class Chart extends Component {
         <Username />
         <div>
           <button
+            id="start"
             className="ui button primary"
             onClick={() => {
               this.startGame();
