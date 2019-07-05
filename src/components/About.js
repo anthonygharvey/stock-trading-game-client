@@ -7,7 +7,11 @@ export default function About() {
       <p>
         Hi, I’m Anthony. I created the Anonymous Stock Trading Game for my final
         project at{" "}
-        <a href="https://flatironschool.com/" target="_blank">
+        <a
+          href="https://flatironschool.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Flatrion School
         </a>
         . The requirements were to build a Ruby on Rails API with a React
