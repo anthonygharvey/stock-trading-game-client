@@ -103,17 +103,17 @@ class Chart extends Component {
     this.props.prices.length = 0;
     this.props.currentPrice.y = 0;
     document.addEventListener("keydown", e => {
-      const { prices, portfolio, currentPrice } = this.props;
+      const { prices, portfolio, currentPrice, day } = this.props;
       let cursor = e.keyCode;
-      if (cursor === 66) {
+      if (cursor === 66 && day > 0) {
         this.props.buy(currentPrice.y, portfolio, prices);
       }
 
-      if (cursor === 83) {
+      if (cursor === 83 && day > 0) {
         this.props.sell(currentPrice.y, portfolio, prices);
       }
 
-      if (cursor === 32) {
+      if (cursor === 32 && day === 0) {
         this.startGame();
       }
     });
