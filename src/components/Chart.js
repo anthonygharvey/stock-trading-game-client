@@ -112,6 +112,10 @@ class Chart extends Component {
       if (cursor === 83) {
         this.props.sell(currentPrice.y, portfolio, prices);
       }
+
+      if (cursor === 32) {
+        this.startGame();
+      }
     });
   }
 
