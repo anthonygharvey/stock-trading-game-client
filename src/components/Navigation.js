@@ -6,21 +6,21 @@ const Navbar = () => {
   return (
     <div className="ui menu">
       <div style={{ height: "40px", width: "40px" }}>
-        <Link to="/">
+        <a href="/">
           <Logo />
-        </Link>
+        </a>
       </div>
-      <Link to="/">
+      <a href="/">
         <div className="header item">Anonymous Stock Trading Game</div>
-      </Link>
+      </a>
 
       <div className="right menu">
-        <Link to="/leaderboard">
+        <a href="/leaderboard">
           <div className="item">Leaderboard</div>
-        </Link>
-        <Link to="/about">
+        </a>
+        <a href="/about">
           <div className="item">About</div>
-        </Link>
+        </a>
       </div>
     </div>
   );

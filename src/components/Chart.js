@@ -160,6 +160,9 @@ class Chart extends Component {
           <button
             className="ui button primary"
             onClick={() => {
+              if (this.props.day === 0) {
+                return;
+              }
               this.props.buy(
                 this.props.currentPrice.y,
                 this.props.portfolio,

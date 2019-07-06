@@ -9,13 +9,15 @@ import Leaderboard from "./Leaderboard";
 class App extends Component {
   render() {
     return (
-      <BrowserRouter>
-        <Route path="/" component={Navbar} />
-        <Route path="/" exact component={PortfolioContainer} />
-        <Route path="/" exact component={Chart} />
-        <Route path="/about" exact component={About} />
-        <Route path="/leaderboard" exact component={Leaderboard} />
-      </BrowserRouter>
+      <>
+        <Navbar />
+        <BrowserRouter>
+          <Route path="/" exact component={PortfolioContainer} />
+          <Route path="/" exact component={Chart} />
+          <Route path="/about" exact component={About} />
+          <Route path="/leaderboard" exact component={Leaderboard} />
+        </BrowserRouter>
+      </>
     );
   }
 }
