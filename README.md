@@ -1,68 +1,20 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
 
-## Available Scripts
+A game built with React and Redux where players are shown a scrolling chart of an anonymous stock and can buy/sell shares. The chart is updated incrementally with 100 days of prices during the game. At the end of the game the player is name of the stock and time period are revealed.
 
-In the project directory, you can run:
+## Demo
 
-### `npm start`
+App link: <a href="https://anonymous-stock-game.herokuapp.com/" target="_blank">Anonymous Stock Trading Game</a>
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Local Installation
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+Install the API: follow the <a href="https://github.com/anthonygharvey/stock-trading-game-api#local-installation" target="_blank">installation instructions</a> on the API repo
 
-### `npm test`
+To install and run the React app on your local machine:
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+1. Click the green Clone or download button above and click the copy to clipboard button
+2. From your terminal, run `git clone [paste the link from step 1]`
+3. Then run cd `stock-trading-game-client` to navigate to the directory
+4. Run `npm install` to install the necessary packages and dependencies
+5. Create a `.env` file in the root of your local directory `stock-trading-game-client/.env` and add the following line: `REACT_APP_API_URL=http://localhost:4000/api`
+6. Run `npm start`
