@@ -17,4 +17,4 @@ To install and run the React app on your local machine:
 3. Then run cd `stock-trading-game-client` to navigate to the directory
 4. Run `npm install` to install the necessary packages and dependencies
 5. Create a `.env` file in the root of your local directory `stock-trading-game-client/.env` and add the following line: `REACT_APP_API_URL=http://localhost:4000/api`
-6. Run `npm start`
+6. Run `npm start` to start the app
