@@ -79,6 +79,7 @@ class Chart extends Component {
     this.postGame(game);
   }
 
+  // include error handling if the request is not completed
   postGame(game) {
     const API_URL = process.env.REACT_APP_API_URL;
     fetch(`${API_URL}/save_game`, {
